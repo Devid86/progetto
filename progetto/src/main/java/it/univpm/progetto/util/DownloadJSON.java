@@ -34,7 +34,7 @@ public class DownloadJSON {
 			connection = (HttpURLConnection) new URL(uri).openConnection();
 			connection.setRequestMethod("POST"); //definisco la modalità di richiesta (POST)
 			connection.setRequestProperty("Content-Type", "application/json");
-			connection.setRequestProperty("Authorization", "Bearer HRaheVzASiAAAAAAAAAAAV5oXlqu5R6vec6xNwTSf_T7EQqxZR-EN3lNB-skM5aW"); //(imposto il token di accesso di dropbox)
+			connection.setRequestProperty("Authorization", "Bearer wyLKmgph90cAAAAAAAAAAQRnc0IwCF31KHurZ3mwivl7gzsbXSnHocCu6JpTzYzu"); //(imposto il token di accesso di dropbox)
 			connection.addRequestProperty("User-Agent",	"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 			connection.setDoOutput(true);
 		} catch (MalformedURLException e) {

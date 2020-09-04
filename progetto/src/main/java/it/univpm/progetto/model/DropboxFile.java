@@ -74,11 +74,13 @@ public class DropboxFile extends File{
 	}
 
 	/**
-	 * @return true se il file è di tipo multimediale 
+	 * @return true se l'estensione del file è .jpg .jpeg .tiff .png
 	 */
 	@Override
 	public boolean isMultimediale() {
-		// TODO definire quando il file è multimediale (confronto tra estensione o tipo??)
+		String estensione = this.metadati.getEstensione();
+		if (estensione.equals(".png")||estensione.equals(".jpg")||estensione.equals(".jpeg")||estensione.equals(".tiff"))
+			return true;
 		return false;
 	}
 

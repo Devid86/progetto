@@ -32,7 +32,7 @@ public class Metadata {
 	 */
 	public void setEstensione(String nomeFile) {
 		int index = nomeFile.lastIndexOf(".");
-		this.estensione = nomeFile.substring(index);
+		this.estensione = nomeFile.substring(index).toLowerCase();
 	}
 
 	/**
