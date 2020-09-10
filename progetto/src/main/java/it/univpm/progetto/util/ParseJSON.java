@@ -32,6 +32,7 @@ public class ParseJSON {
 				file.setId((String)obj.get("id"));
 				file.setPath((String)obj.get("path_lower"));
 				file.setName((String)obj.get("name"));
+				file.setSize((long)obj.get("size"));
 				listaFile.add(file);
 			}
 		}
@@ -51,11 +52,13 @@ public class ParseJSON {
 			jsonObject = DownloadJSON.downloadJSONFiles(cursor);
 			getListFolder(jsonObject, listaFile);
 		}
-		//TODO:for da sostituire con un oggetto iteratore
-		for(int i =0; i<listaFile.size();i++) {
-			//getMetadataFromJson(listaFile.get(i).getId()); serviva per controllare l'output
-			listaFile.get(i).setMetadati(getMetadataFromJson(listaFile.get(i).getId()));
-			listaFile.get(i).setRevisions(getRevisionsFromJson(listaFile.get(i).getId()));
+		Iterator<?> iterator = listaFile.iterator();
+		while (iterator.hasNext()) {
+			DropboxFile file = new DropboxFile();
+			file = (DropboxFile)iterator.next();
+			//getMetadataFromJson(file.getId()); serviva per controllare l'output
+			file.setMetadati(getMetadataFromJson(file.getId()));
+			file.setRevisions(getRevisionsFromJson(file.getId()));
 		}
 		return listaFile;
 	}

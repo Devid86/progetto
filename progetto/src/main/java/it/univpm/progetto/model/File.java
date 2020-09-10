@@ -11,19 +11,23 @@ import java.nio.file.Paths;
 public abstract class File {
 	private String name;
 	private Path path;
+	private long size;
 
 	public File() {
 		this.name = null;
 		this.path = null;
+		this.size = 0;
 	}
 
 	/**
 	 * @param name
 	 * @param path
+	 * @param size
 	 */
-	public File(String name, Path path) {
+	public File(String name, Path path, long size) {
 		this.name = name;
 		this.path = path;
+		this.size = size;
 	}
 
 	/**
@@ -52,6 +56,20 @@ public abstract class File {
 	 */
 	public void setPath(String path) {
 		this.path = Paths.get(path);
+	}
+	
+	/**
+	 * @return the size
+	 */
+	public long getSize() {
+		return size;
+	}
+	
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(long size) {
+		this.size = size;
 	}
 
 	public abstract boolean isMultimediale();
@@ -83,9 +101,5 @@ public abstract class File {
 	public String toString() {
 		return "name= " + name + ", path= " + path;
 	}
-
-
-
-
 
 }

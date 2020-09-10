@@ -61,7 +61,7 @@ public class DownloadJSON {
 		connection = apriConnessione(uri);
 		String bodyStringToSend = " {\"path\": " + "\""+ "/Applicazioni/AppEsameOOP" + "\""+ ", \"recursive\": " +true +"}"; //Definsico il path relativo alla cartella Dropbox da cui prendere i file
 		sendBody(connection, bodyStringToSend);
-		jsonObject = recieveJSONData(connection, jsonObject);
+		jsonObject = receiveJSONData(connection, jsonObject);
 		connection.disconnect();
 		return jsonObject;
 	}
@@ -79,7 +79,7 @@ public class DownloadJSON {
 		connection = apriConnessione(uri);
 		String bodyStringToSend = " {\"cursor\": " + "\""+ cursor + "\"}"; //Definsico il path relativo alla cartella Dropbox da cui prendere i file
 		sendBody(connection, bodyStringToSend);
-		jsonObject = recieveJSONData(connection, jsonObject);
+		jsonObject = receiveJSONData(connection, jsonObject);
 		connection.disconnect();
 		return jsonObject;
 	}
@@ -97,7 +97,7 @@ public class DownloadJSON {
 		connection = apriConnessione(uri);
 		String bodyStringToSend = " {\"path\": " + "\""+ filePathOrID + "\""+ ", \"include_media_info\": " +true +"}"; 
 		sendBody(connection, bodyStringToSend );
-		jsonObject = recieveJSONData(connection, jsonObject);
+		jsonObject = receiveJSONData(connection, jsonObject);
 		connection.disconnect();
 		return jsonObject;
 
@@ -115,7 +115,7 @@ public class DownloadJSON {
 		connection = apriConnessione(uri);
 		String bodyStringToSend = " {\"path\": " + "\""+ filePathOrID + "\"}"; 
 		sendBody(connection, bodyStringToSend );
-		jsonObject = recieveJSONData(connection, jsonObject);
+		jsonObject = receiveJSONData(connection, jsonObject);
 		connection.disconnect();
 		return jsonObject;
 
@@ -148,7 +148,7 @@ public class DownloadJSON {
 	 * @param jsonObject	oggetto di tipo {@link JSONObject} in cui verranno salvati i dati scaricati
 	 * @return {@link JSONObject} jsonObject
 	 */
-	private static JSONObject recieveJSONData(HttpURLConnection connection, JSONObject jsonObject) {
+	private static JSONObject receiveJSONData(HttpURLConnection connection, JSONObject jsonObject) {
 		String data = "";
 		String line = "";
 

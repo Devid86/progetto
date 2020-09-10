@@ -21,11 +21,12 @@ public class DropboxFile extends File{
 	/**
 	 * @param name
 	 * @param path
+	 * @param size
 	 * @param id
 	 * @param metadati
 	 */
-	public DropboxFile(String name, Path path, String id, Metadata metadati) {
-		super(name, path);
+	public DropboxFile(String name, Path path, long size, String id, Metadata metadati) {
+		super(name, path, size);
 		this.id = id;
 		this.metadati = metadati;
 		this.revisions = null;

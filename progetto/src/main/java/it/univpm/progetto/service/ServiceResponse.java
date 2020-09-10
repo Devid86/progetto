@@ -1,39 +1,45 @@
 package it.univpm.progetto.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import it.univpm.progetto.model.DropboxFile;
+import it.univpm.progetto.model.Statistics;
 import it.univpm.progetto.util.ParseJSON;
 
 public class ServiceResponse {
-	
-/**
- * Classe che contiene i metodi per gestire il parametro multimediale
- * @author Devid
- * 
- */
-	
-	static ArrayList<DropboxFile> listaFile = new ArrayList<DropboxFile>();
-	
-	public static ArrayList<DropboxFile> checkParameter (int param){
-		listaFile = ParseJSON.parseJSON();
-		if (param != 0) listaFile = cutArrayList (param); 
-		return listaFile;
-	}
-	
-	public static ArrayList<DropboxFile> cutArrayList (int param){
+
+	/**
+	 * Classe che contiene i metodi per gestire il parametro multimediale
+	 * @author Devid
+	 * 
+	 */
+
+	static ArrayList<DropboxFile> listaFile = ParseJSON.parseJSON();
+
+	public static ArrayList<DropboxFile> filterArrayList(boolean check){
 		ArrayList<DropboxFile> listaTroncata = new ArrayList<DropboxFile>();
 		Iterator<?> iterator = listaFile.iterator();
 		while (iterator.hasNext()) {
 			DropboxFile file = (DropboxFile)iterator.next();
-			if ((param == 1) && (file.isMultimediale())) {					
-				listaTroncata.add(file);
-			}
-			if ((param == 2) && (!file.isMultimediale())) {					
+			if (check == file.isMultimediale()) {
 				listaTroncata.add(file);
 			}
 		}
-	return listaTroncata; 
+		return listaTroncata; 
 	}
+
+	public static List<Object> getStats(ArrayList<DropboxFile> lista){
+		ArrayList<Object> listaDiRitorno = new ArrayList<Object>() ;
+		HashMap<String, Integer> hash = new HashMap<String, Integer>();
+		ArrayList<Statistics> single = Statistics.getSingleStats(lista);
+		//listaDiRitorno.add(hash);
+		listaDiRitorno.add(single);
+		
+		
+		return listaDiRitorno;
+	}
+
 }
