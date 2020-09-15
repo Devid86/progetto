@@ -63,55 +63,20 @@ public class Statistics {
 	public void setSize(long size) {
 		this.size = size;
 	}
-
-	public static ArrayList<Statistics> getSingleStats(ArrayList<DropboxFile> lista){
-		ArrayList<Statistics> single = new ArrayList<Statistics>(); 
-		Iterator<?> iterator = lista.iterator();
-		while (iterator.hasNext()) {
-			DropboxFile obj = new DropboxFile();
-			Statistics file = new Statistics();
-			obj = (DropboxFile)iterator.next();
-			ArrayList<Revisione> rev = obj.getRevisions();
-			file = getRevisionStats (rev);
-			file.setPath(obj.getPath());
-			file.setSize(obj.getSize());
-			single.add(file);
-		}
-		return single;
-	}
 	
-	private static Statistics getRevisionStats(ArrayList<Revisione> rev) {
-		Statistics stat = new Statistics();
-		Iterator<?> iterator = rev.iterator();
-		LocalDateTime max = rev.get(0).getRev_date();
-		LocalDateTime min = rev.get(0).getRev_date();
-		while (iterator.hasNext()) {
-			Revisione obj = new Revisione();
-			obj = (Revisione)iterator.next();
-			stat.num_rev ++;
-			min = obj.getRev_date();
-		}
-		Duration durata = Duration.between(min, max);
-		if (!durata.isZero()) {
-			stat.mid_time = getMedTime(durata, stat.num_rev);
-			stat.rev_day = getRevDay(durata, stat.num_rev);
-			stat.rev_week = getRevWeek (rev, min);
-		}
-		return stat;
-	}
 	
-	private static MidTime getMedTime(Duration durata, int num) {
+	public void setMid_time(Duration durata, int num) {
 		MidTime medtime = new MidTime(); 
 		medtime.setTempo_med((float)durata.getSeconds()/num, durata);
-		return medtime;
+		this.mid_time = medtime;
 	}
 	
-	private static float getRevDay(Duration durata, int num) {
-		if(durata.toDays()!=0) return (float)num/durata.toDays();
-		return num;
+	public void setRev_day(Duration durata, int num) {
+		if(durata.toDays()!=0) this.rev_day = (float)num/durata.toDays();
+		else this.rev_day = num;
 	}
 	
-	private static int getRevWeek(ArrayList<Revisione> rev, LocalDateTime min) {
+	public void setRev_week (ArrayList<Revisione> rev, LocalDateTime min) {
 		int cont = 0;
 		Iterator<?> iterator = rev.iterator();
 		while (iterator.hasNext()) {
@@ -119,7 +84,7 @@ public class Statistics {
 			obj = (Revisione)iterator.next();
 			if (obj.getRev_date().isBefore(min.plusDays(7))) cont++;
 		}
-		return cont;
+		this.rev_week = cont;
 		
 	}
 

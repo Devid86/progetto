@@ -38,18 +38,9 @@ public class ControllerClass {
 		return new ResponseEntity<Object>(ServiceResponse.getStats(lista), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/json", method = RequestMethod.GET)
-	public ResponseEntity<?> getJson(){
-		JSONObject jsonObject = DownloadJSON.downloadJSONFiles();
-		String cursor = (String) jsonObject.get("cursor");
-		return new ResponseEntity<JSONObject>(DownloadJSON.downloadJSONFiles(cursor), HttpStatus.OK);
-}
-	
-	//TODO creare package exception
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<String> handle(MethodArgumentTypeMismatchException ex){
 		return new ResponseEntity<String>("Parametro errato", HttpStatus.BAD_REQUEST);
 	}
-
-
+	
 }
