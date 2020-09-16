@@ -2,19 +2,14 @@ package it.univpm.progetto.controller;
 
 import java.util.ArrayList;
 
-import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
 import it.univpm.progetto.model.DropboxFile;
 import it.univpm.progetto.service.ServiceResponse;
-import it.univpm.progetto.util.DownloadJSON;
 
 /**
  * Classe che specificla le rotte che possono essere richieste al server

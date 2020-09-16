@@ -25,6 +25,7 @@ public class Statistics {
 		this.size = 0;
 	}
 	
+	
 	public MidTime getMid_time() {
 		return mid_time;
 	}
@@ -64,10 +65,8 @@ public class Statistics {
 		this.size = size;
 	}
 	
-	
-	public void setMid_time(Duration durata, int num) {
-		this.mid_time = new MidTime(); 
-		this.mid_time.setTempo_med((float)durata.getSeconds()/num, durata);
+	public void setMid_time(Duration durata, float num) {
+		this.mid_time = new MidTime(durata, num); 
 	}
 	
 	public void setRev_day(Duration durata, int num) {
@@ -84,9 +83,7 @@ public class Statistics {
 			if (obj.getRev_date().isBefore(min.plusDays(7))) cont++;
 		}
 		this.rev_week = cont;
-		
 	}
-
 
 }
 

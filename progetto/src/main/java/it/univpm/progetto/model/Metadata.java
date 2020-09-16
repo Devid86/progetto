@@ -30,6 +30,7 @@ public class Metadata {
 	/**
 	 * @param nome del file da cui ricavare l'estensione
 	 */
+	
 	public void setEstensione(String nomeFile) {
 		int index = nomeFile.lastIndexOf(".");
 		this.estensione = nomeFile.substring(index).toLowerCase();
