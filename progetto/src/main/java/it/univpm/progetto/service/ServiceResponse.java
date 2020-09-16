@@ -7,13 +7,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import it.univpm.progetto.model.DropboxFile;
 import it.univpm.progetto.model.Revisione;
 import it.univpm.progetto.model.Statistics;
-import it.univpm.progetto.util.DownloadJSON;
 import it.univpm.progetto.util.ParseJSON;
 
 public class ServiceResponse {
@@ -40,7 +36,7 @@ public class ServiceResponse {
 
 	public static List<Object> getStats(ArrayList<DropboxFile> lista){
 		ArrayList<Object> listaDiRitorno = new ArrayList<Object>() ;
-		HashMap<String, Long> hash = new HashMap<String, Long>();
+		HashMap<String, Integer> hash = new HashMap<String, Integer>();
 		hash = getGeneralStats (lista);
 		ArrayList<Statistics> single = getSingleStats(lista);
 		listaDiRitorno.add(hash);
@@ -84,14 +80,14 @@ public class ServiceResponse {
 		return stat;
 	}
 	
-	private static HashMap<String, Long> getGeneralStats(ArrayList<DropboxFile> lista){
-		HashMap<String, Long> hash = new HashMap<String, Long>();
+	private static HashMap<String, Integer> getGeneralStats(ArrayList<DropboxFile> lista){
+		HashMap<String, Integer> hash = new HashMap<String, Integer>();
 		Iterator<?> iterator = lista.iterator();
 		while (iterator.hasNext()) {
 			DropboxFile obj = new DropboxFile();
 			obj = (DropboxFile)iterator.next();
 			String Est = obj.getMetadati().getEstensione();
-			hash.putIfAbsent(Est, (long)1);
+			hash.putIfAbsent(Est, 0);
 			hash.put(Est, hash.get(Est) + 1);
 		}
 		hash.put("File's Average Size", getSize(lista));
@@ -99,7 +95,7 @@ public class ServiceResponse {
 		return hash;
 	}
 
-	private static long getSize(ArrayList<DropboxFile> lista) {
+	private static int getSize(ArrayList<DropboxFile> lista) {
 		Iterator<?> iterator = lista.iterator();
 		long size = 0;
 		while (iterator.hasNext()) {
@@ -107,12 +103,12 @@ public class ServiceResponse {
 			obj = (DropboxFile)iterator.next();
 			size = size + obj.getSize();
 		}
-		return size;
+		return (int)size/lista.size();
 	}
 		
-	private static long getRevisions(ArrayList<DropboxFile> lista) {
+	private static int getRevisions(ArrayList<DropboxFile> lista) {
 		Iterator<?> iterator = lista.iterator();
-		long rev = 0;
+		int rev = 0;
 		while (iterator.hasNext()) {
 			DropboxFile obj = new DropboxFile();
 			obj = (DropboxFile)iterator.next();

@@ -37,10 +37,5 @@ public class ControllerClass {
 		ArrayList<DropboxFile> lista = ServiceResponse.filterArrayList(param);
 		return new ResponseEntity<Object>(ServiceResponse.getStats(lista), HttpStatus.OK);
 	}
-
-	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
-	public ResponseEntity<String> handle(MethodArgumentTypeMismatchException ex){
-		return new ResponseEntity<String>("Parametro errato", HttpStatus.BAD_REQUEST);
-	}
 	
 }

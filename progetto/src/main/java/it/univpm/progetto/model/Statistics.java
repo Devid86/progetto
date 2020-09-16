@@ -66,9 +66,8 @@ public class Statistics {
 	
 	
 	public void setMid_time(Duration durata, int num) {
-		MidTime medtime = new MidTime(); 
-		medtime.setTempo_med((float)durata.getSeconds()/num, durata);
-		this.mid_time = medtime;
+		this.mid_time = new MidTime(); 
+		this.mid_time.setTempo_med((float)durata.getSeconds()/num, durata);
 	}
 	
 	public void setRev_day(Duration durata, int num) {
