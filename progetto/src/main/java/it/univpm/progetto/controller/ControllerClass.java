@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
+
 import it.univpm.progetto.model.DropboxFile;
+import it.univpm.progetto.model.Statistics;
 import it.univpm.progetto.service.ServiceResponse;
 
 /**
@@ -23,7 +27,12 @@ public class ControllerClass {
 	public ResponseEntity<?> getAllData(
 			@RequestParam(name="multi", required = true) boolean param) {
 		return new ResponseEntity<ArrayList<DropboxFile>>(ServiceResponse.filterArrayList(param), HttpStatus.OK);
-	}
+	}	
+	
+	/**
+	 *  Restituisce un {@link ArrayList} filtrato secondo il @param multi {@link Boolean}
+	 * 
+	 */
 
 
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
@@ -33,4 +42,8 @@ public class ControllerClass {
 		return new ResponseEntity<Object>(ServiceResponse.getStats(lista), HttpStatus.OK);
 	}
 	
+	/**
+	 * Dato un {@link ArrayList}, filtrato secondo il @param multi,
+	 * ne restituisce le relative {@link Statistics}
+	 */
 }

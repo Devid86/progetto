@@ -8,14 +8,14 @@ import it.univpm.progetto.model.DropboxFile;
 import it.univpm.progetto.model.Revisione;
 import it.univpm.progetto.model.Statistics;
 
+	
+/**
+ * Classe che contiene i metodi per ottenere le statistiche generali e sui singoli file
+ * @author Devid
+ * 
+ */
 public class StatisticResponse {
 	
-	/**
-	 * Classe che contiene i metodi per ottenere le statistiche generali e sui singoli file
-	 * @author Devid
-	 * 
-	 */
-
 	public static ArrayList<Statistics> getSingleStats(ArrayList<DropboxFile> lista){
 		ArrayList<Statistics> single = new ArrayList<Statistics>(); 
 		Iterator<?> iterator = lista.iterator();
@@ -42,11 +42,18 @@ public class StatisticResponse {
 			hash.putIfAbsent(Est, 0);
 			hash.put(Est, hash.get(Est) + 1);
 		}
+		// All'interno del ciclo, letta l'estensione del file, inserisco una nuova chiave nell'HashMap se non presente
+		// Incremento il valore legato alla chiave se invece è già contenuta nell'HashMap
 		hash.put("File's Average Size", getSize(lista));
 		hash.put("Files Revisions", RevisionResponse.getRevisions(lista));
 		return hash;
 	}
 
+	/**
+	 * Metodo che restituisce la dimensione media dei file contenuti nella cartella DropBox presa in esame
+	 * @param lista
+	 * @return
+	 */
 	private static int getSize(ArrayList<DropboxFile> lista) {
 		Iterator<?> iterator = lista.iterator();
 		long size = 0;

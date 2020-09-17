@@ -9,13 +9,22 @@ import it.univpm.progetto.model.DropboxFile;
 import it.univpm.progetto.model.Revisione;
 import it.univpm.progetto.model.Statistics;
 
+/**
+ * Classe che contiene i metodi per ottenere le statistiche, sia generali che singole,
+ * in maniera specifica sulle sole revisioni
+ * @author Devid
+ * 
+ */
 public class RevisionResponse {
 
 	public static Statistics getRevisionStats(ArrayList<Revisione> rev) {
 		Statistics stat = new Statistics();
 		Iterator<?> iterator = rev.iterator();
 		LocalDateTime max = rev.get(0).getRev_date();
+		// Inizializzo la data di ultima revisione col primo elemento dell'ArrayList
 		LocalDateTime min = rev.get(0).getRev_date();
+		// Mi assicuro che venga valorizzata anche la prima revisione nel caso fosse unica
+		
 		while (iterator.hasNext()) {
 			Revisione obj = new Revisione();
 			obj = (Revisione)iterator.next();
@@ -23,6 +32,7 @@ public class RevisionResponse {
 			min = obj.getRev_date();
 		}
 		Duration durata = Duration.between(min, max);
+		// Per evitare una division by 0, controllo che esistano almeno due revisioni
 		if (!durata.isZero()) {
 			stat.setMid_time(durata, (float)durata.getSeconds()/stat.getNum_rev());
 			stat.setRev_day(durata, stat.getNum_rev());
