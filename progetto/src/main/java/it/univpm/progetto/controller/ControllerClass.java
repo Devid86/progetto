@@ -19,18 +19,21 @@ import it.univpm.progetto.service.ServiceResponse;
 @RestController
 public class ControllerClass {
 
+	/**
+	 *  Restituisce un {@link ArrayList} filtrato secondo il @param multi {@link Boolean}
+	 * 
+	 */
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllData(
 			@RequestParam(name="multi", required = true) boolean param) {
 		return new ResponseEntity<ArrayList<DropboxFile>>(ServiceResponse.filterArrayList(param), HttpStatus.OK);
 	}	
 	
+	
 	/**
-	 *  Restituisce un {@link ArrayList} filtrato secondo il @param multi {@link Boolean}
-	 * 
+	 * Dato un {@link ArrayList}, filtrato secondo il @param multi,
+	 * ne restituisce le relative {@link Statistics}
 	 */
-
-
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
 	public ResponseEntity<?> getStats(
 			@RequestParam(name="multi", required = true) boolean param) {
@@ -38,8 +41,4 @@ public class ControllerClass {
 		return new ResponseEntity<Object>(ServiceResponse.getStats(lista), HttpStatus.OK);
 	}
 	
-	/**
-	 * Dato un {@link ArrayList}, filtrato secondo il @param multi,
-	 * ne restituisce le relative {@link Statistics}
-	 */
 }

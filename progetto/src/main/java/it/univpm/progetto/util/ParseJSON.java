@@ -32,7 +32,7 @@ public class ParseJSON {
 				file.setId((String)obj.get("id"));
 				file.setPath((String)obj.get("path_lower"));
 				file.setName((String)obj.get("name"));
-				file.setSize((long)obj.get("size"));
+				file.setSize((Long)obj.get("size"));
 				listaFile.add(file);
 			}
 		}

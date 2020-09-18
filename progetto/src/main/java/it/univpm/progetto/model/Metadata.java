@@ -28,7 +28,7 @@ public class Metadata {
 	}
 
 	/**
-	 * @param nome del file da cui ricavare l'estensione
+	 * @param nomeFile nome del file da cui ricavare l'estensione
 	 */
 	
 	public void setEstensione(String nomeFile) {

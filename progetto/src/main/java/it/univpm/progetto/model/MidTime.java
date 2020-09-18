@@ -11,14 +11,14 @@ public class MidTime {
 	 * @param tempo_med
 	 * @param unit
 	 */
-	
 	public MidTime() {
 		this.tempo_med = 0;
 		this.unit = "secs";
 	}
 		
 	/**
-	 * @param tempo medio revisioni e relativa unità di misura
+	 * @param tempo_med tempo medio revisioni
+	 * @param unit unità di misura del tempo medio
 	 */
 
 	public MidTime(Duration durata, float num) {
@@ -46,7 +46,7 @@ public class MidTime {
 	}
 	
 	/**
-	 * @param tempo medio tra una revisione e l'altra
+	 * @param tempo_med tempo medio tra una revisione e l'altra
 	 */
 	
 	public void setTempo_med(float tempo_med) {
@@ -63,7 +63,7 @@ public class MidTime {
 	}
 	
 	/**
-	 * @param unità di misura del tempo medio
+	 * @param unit unità di misura del tempo medio
 	 */
 
 	public void setUnit(String unit) {
