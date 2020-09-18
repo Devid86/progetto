@@ -20,6 +20,7 @@ public class Statistics {
 	private float rev_day;
 	private int rev_week;
 	private long size;
+	private LocalDateTime last_rev;
 	
 	/**
 	 * @param path
@@ -28,6 +29,7 @@ public class Statistics {
 	 * @param rev_day
 	 * @param rev_week
 	 * @param size
+	 * @param last_rev
 	 */
 	public Statistics() {
 		super();
@@ -36,6 +38,7 @@ public class Statistics {
 		this.rev_day = 0;
 		this.rev_week = 0;
 		this.size = 0;
+		this.last_rev = null;
 	}
 	
 	/**
@@ -120,6 +123,20 @@ public class Statistics {
 	 */
 	public void setSize(long size) {
 		this.size = size;
+	}
+	
+	/**
+	 * @return the last_rev
+	 */
+	public LocalDateTime getLast_rev() {
+		return last_rev;
+	}
+
+	/**
+	 * @param ultima_rev the ultima_rev to set
+	 */
+	public void setLast_rev(LocalDateTime last_rev) {
+		this.last_rev = last_rev;
 	}
 	
 	/**

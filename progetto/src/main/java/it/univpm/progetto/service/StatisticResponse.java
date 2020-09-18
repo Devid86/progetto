@@ -25,6 +25,7 @@ public class StatisticResponse {
 			obj = (DropboxFile)iterator.next();
 			ArrayList<Revisione> rev = obj.getRevisions();
 			file = RevisionResponse.getRevisionStats (rev);
+			file.setLast_rev(rev.get(0).getRev_date());
 			file.setPath(obj.getPath());
 			file.setSize(obj.getSize());
 			single.add(file);
@@ -44,7 +45,8 @@ public class StatisticResponse {
 		}
 		// All'interno del ciclo, letta l'estensione del file, inserisco una nuova chiave nell'HashMap se non presente
 		// Incremento il valore legato alla chiave se invece è già contenuta nell'HashMap
-		hash.put("File's Average Size", getSize(lista));
+		hash.put("File's Average Size (bytes)", getSize(lista));
+		hash.put("Revision's Average Time (hours)", getTime(getSingleStats(lista)));
 		hash.put("Files Revisions", RevisionResponse.getRevisions(lista));
 		return hash;
 	}
@@ -63,6 +65,17 @@ public class StatisticResponse {
 			size = size + obj.getSize();
 		}
 		return (int)size/lista.size();
+	}
+	
+	private static int getTime(ArrayList<Statistics> lista) {
+		Iterator<?> iterator = lista.iterator();
+		float time = 0;
+		while (iterator.hasNext()) {
+			Statistics obj = new Statistics();
+			obj = (Statistics)iterator.next();
+			if (obj.getMid_time()!= null && obj.getMid_time().getUnit() == "hours") time = time + obj.getMid_time().getTempo_med();
+		}
+		return (int)time/lista.size();
 	}
 
 }

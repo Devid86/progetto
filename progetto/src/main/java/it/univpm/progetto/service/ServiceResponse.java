@@ -36,9 +36,9 @@ public class ServiceResponse {
 
 	public static List<Object> getStats(ArrayList<DropboxFile> lista){
 		ArrayList<Object> listaDiRitorno = new ArrayList<Object>() ;
-		HashMap<String, Integer> hash = new HashMap<String, Integer>();
-		hash = StatisticResponse.getGeneralStats (lista);
 		ArrayList<Statistics> single = StatisticResponse.getSingleStats(lista);
+		HashMap<String, Integer> hash = new HashMap<String, Integer>();
+		hash = StatisticResponse.getGeneralStats(lista);
 		listaDiRitorno.add(hash);
 		listaDiRitorno.add(single);
 		// Unisco in ArrayList di Object l'HashMap delle statistiche generali con l'ArrayList
